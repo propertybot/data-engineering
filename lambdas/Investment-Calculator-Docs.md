@@ -41,6 +41,12 @@ Call the url : https://gcfzftq6pj.execute-api.us-east-1.amazonaws.com/prod/
 
 with the input given below, and you should recieve the response. Postman is recommended for this testing.
 
+Give the input as raw json in the body.
+
+- Go to postman and select POST option and enter the url above.
+- Go to the `Body` catagory and select `raw` feild. 
+- Enter the suitable Input and send the request.
+
 # Sample 
 
 ## Input 01
