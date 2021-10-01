@@ -28,7 +28,9 @@ The Total Cost output in the body will be the main takeout that will represent t
     "HVAC Forced Air System": int,
     "HVAC Furnace": int,
     "Bathroom Vanities": int,
-    "Trim Bushes Yard": int
+    "Trim Bushes Yard": int,
+    "Floor Tile SF" : int,
+    "Vinyl SF": int
   },
   "Needed Repairs": {
     "Exterior Painting": {
@@ -120,7 +122,9 @@ Give the input as raw json in the body.
     "HVAC Forced Air System": 2,
     "HVAC Furnace": 2,
     "Bathroom Vanities": 2,
-    "Trim Bushes Yard": 5
+    "Trim Bushes Yard": 5,
+    "Floor Tile SF" : 1000,
+    "Vinyl SF": 1000
   },
   "Needed Repairs": {
     "Exterior Painting": {
@@ -244,15 +248,15 @@ Give the input as raw json in the body.
         "Job Unit": "Per SF",
         "Labor": 6,
         "Material": 10,
-        "Units": 10,
-        "Cost": 160
+        "Units": 1000,
+        "Cost": 16000
       },
       "Vinyl Squares": {
         "Job Unit": "Per SF",
         "Labor": 1.5,
         "Material": 2,
-        "Units": 10,
-        "Cost": 35
+        "Units": 1000,
+        "Cost": 3500
       }
     },
     "HVAC": {
@@ -342,7 +346,7 @@ Give the input as raw json in the body.
         "Cost": 19159
       }
     },
-    "Total Cost": 77733.5
+    "Total Cost": 97038.5
   }
 }
 ```
