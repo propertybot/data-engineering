@@ -86,13 +86,13 @@ def handler(event, context):
       "Bathroom Vanities": bathroom_vanities,
       "Granite Countertops": countertop_sf,
       "Kitchen Cabinet": kitchen_cabinet,
-      "Refinish Hardwood": sf,
-      "Tile": sf,
-      "Vinyl Squares": sf,
+      "Refinish Hardwood": refinish_hardwood_sf,
+      "Tile": refinish_hardwood_sf,
+      "Vinyl Squares": refinish_hardwood_sf,
       "Forced Air System": hvac_forced_air_system,
       "Furnace": hvac_furnace,
-      "Asphalt Shingles": sf,
-      "Wood SHingles": sf,
+      "Asphalt Shingles": sf/100,
+      "Wood SHingles": sf/100,
       "Remove Trees": remove_tree,
       "Trim Trees": trim_trees,
       "Trim Bushes": trim_bushes,
@@ -121,10 +121,11 @@ def handler(event, context):
                 response = table.get_item(
                     Key = {'city-sheet-task':key}
                 )
-            
+
                 for k in response:
                     if k=="Item":
                         item =response[k]
+
             # Initialise Result
                         result = {}
                         result["Job Unit"] = item["Unit"]
@@ -135,7 +136,7 @@ def handler(event, context):
                         unit = refer[j]
                         
                         result["Units"] = unit
-                        result["Cost"] = unit * (item["Labor"] + item["Material"])
+                        result["Cost"] = unit * (float(item["Labor"]) + float(item["Material"]))
                         res[i][j] = result
                         total_cost += result["Cost"]
     res["Total Cost"] = total_cost
