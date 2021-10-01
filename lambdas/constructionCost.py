@@ -21,6 +21,8 @@ def handler(event, context):
         countertop_sf = details["Counter Tops SF"]
         tile_shower_sf = details["Tile Shower SF"]
         refinish_hardwood_sf = details["Refinish Hardwood SF"]
+        tile_sf = details["Floor Tile SF"]
+        vinyl_sf = details["Vinyl SF"]
     
         ## LF
         kitchen_cabinet = details["Kitchen Cabinet"]
@@ -61,8 +63,8 @@ def handler(event, context):
         'body': json.dumps(f"The data posted is either Invalid or Incomplete. Error : {e}")
     }
     
-    # Initialize Result
     
+    # Initialize Result
     res = {}
     
     res["Exterior Painting"] = {}
@@ -87,8 +89,8 @@ def handler(event, context):
       "Granite Countertops": countertop_sf,
       "Kitchen Cabinet": kitchen_cabinet,
       "Refinish Hardwood": refinish_hardwood_sf,
-      "Tile": refinish_hardwood_sf,
-      "Vinyl Squares": refinish_hardwood_sf,
+      "Tile": tile_sf,
+      "Vinyl Squares": vinyl_sf,
       "Forced Air System": hvac_forced_air_system,
       "Furnace": hvac_furnace,
       "Asphalt Shingles": sf/100,
