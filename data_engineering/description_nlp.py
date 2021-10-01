@@ -133,7 +133,7 @@ def fetch_descriptions(item):
             items.append(tag)
 
        
-    if regex_handler(description, '(remodeled|move-in-ready|move-in ready|move in ready| mov ein ready)'):
+    if regex_handler(description, '(remodeled|move-in-ready|move-in ready|move in ready| movein ready)'):
         items.append('turnkey')      
     elif regex_handler(description, '(tlc|fixer|needs[\s]work|investment[\s]opportunity|investors|handyman|as\-is|potential|value-add|value add|as is|needs repairs)'):
         items.append('remodel')
