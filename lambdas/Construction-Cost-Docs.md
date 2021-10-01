@@ -223,28 +223,36 @@ Give the input as raw json in the body.
         "Cost": 1400
       }
     },
-    "Electrical": {},
+    "Electrical": {
+      "Replace Circuit Panel": {
+        "Job Unit": "Per Panel",
+        "Labor": 1500,
+        "Material": 0,
+        "Units": 6,
+        "Cost": 9000
+      }
+    },
     "Flooring": {
       "Refinish Hardwood": {
         "Job Unit": "Per SF",
         "Labor": 2,
         "Material": 0,
-        "Units": 2737,
-        "Cost": 5474
+        "Units": 10,
+        "Cost": 20
       },
       "Tile": {
         "Job Unit": "Per SF",
         "Labor": 6,
         "Material": 10,
-        "Units": 2737,
-        "Cost": 43792
+        "Units": 10,
+        "Cost": 160
       },
       "Vinyl Squares": {
         "Job Unit": "Per SF",
         "Labor": 1.5,
         "Material": 2,
-        "Units": 2737,
-        "Cost": 9579.5
+        "Units": 10,
+        "Cost": 35
       }
     },
     "HVAC": {
@@ -320,21 +328,21 @@ Give the input as raw json in the body.
     },
     "Roof": {
       "Asphalt Shingles": {
-        "Job Unit": "Per SF",
+        "Job Unit": "Per Square",
         "Labor": 350,
         "Material": 0,
-        "Units": 2737,
-        "Cost": 957950
+        "Units": 27.37,
+        "Cost": 9579.5
       },
       "Wood SHingles": {
-        "Job Unit": "Per SF",
+        "Job Unit": "Per Square",
         "Labor": 700,
         "Material": 0,
-        "Units": 2737,
-        "Cost": 1915900
+        "Units": 27.37,
+        "Cost": 19159
       }
     },
-    "Total Cost": 2972475.5
+    "Total Cost": 77733.5
   }
 }
 ```
