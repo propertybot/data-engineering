@@ -15,7 +15,12 @@
 
 ## Data Pipelines
 
-**Ingestion of Rapid API Data**
+**Ingestion of Rapid API Data, Saving of Images, Labeling of Images**
+
+The main data ingestion process is locating [ingest_listings.ipynb](ingest_listings.ipynb). Here is the sequence diagram for the data ingestion process:
+
+![alt text](read_me_references/sequence.png)
+
 
 ### TODO: CURRENT State Architecture
 
