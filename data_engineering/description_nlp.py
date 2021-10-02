@@ -1,8 +1,6 @@
 from __future__ import print_function 
-import boto3
 import json
 import decimal
-from boto3.dynamodb.conditions import Key, Attr
 import re
 
 CURRENT_YEAR = 2021
@@ -113,8 +111,8 @@ def get_percentage_description(description, item, high_cutoff, medium_cutoff):
     
 
 # Parse and tag the MLS descriptions with out metadata
-def fetch_descriptions(item):
-    description = str(item['property_info']['properties'][0]['description']).lower()
+def fetch_description_metadata(item):
+    description = str(item['properties'][0]['description']).lower()
     items = []
     aged_items = ['forced air', 'central air', 'roof', 'laundry', 'furnace', 'air cond', 'a/c', ' ac ', 'plumbing', 'electrical']
     # THEY LAST            15              17       30       10         20          15      15      15         24             50
@@ -180,13 +178,3 @@ def fetch_descriptions(item):
         if tag:
             items.append(tag)
     return items
-
-dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('properties_enriched')
-response = table.scan()
-
-loop_through_response(response)
-
-while 'LastEvaluatedKey' in response:
-    response = table.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
-    loop_through_response(response)
