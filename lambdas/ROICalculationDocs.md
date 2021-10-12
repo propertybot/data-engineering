@@ -9,7 +9,9 @@ The summary page will consist of a section named Summary of returns, which shoul
 # Assumptions
 
 afterPrice : If unavailable : take the average of all houses in that city with same number of bedrooms.
+
 squareFootage : If unavailable : 1678
+
 For inputs of rehab cost calculation, assumptions are calculated based on the condition of the house that is determined by computer vision model.
 
 # Usage Of Parameters To Be Given In Post Request
