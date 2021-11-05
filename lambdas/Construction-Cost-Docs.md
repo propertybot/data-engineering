@@ -107,29 +107,29 @@ Give the input as raw json in the body.
   "Property Dimensions": {
     "Square Feet": 2737,
     "Doors": 10,
-    "Floor SF": 2000,
-    "Counter Tops SF": 10,
+    "Floor SF": 2737,
+    "Counter Tops SF": 250,
     "Tile Shower SF": 10,
-    "Refinish Hardwood SF": 10,
-    "Kitchen Cabinet": 0,
+    "Refinish Hardwood SF": 0,
+    "Kitchen Cabinet": 20,
     "Tub": 2,
     "Bathroom Sink": 2,
     "Toilet": 2,
-    "Kitchen Sink": 2,
-    "Circuit Panel": 6,
-    "Removed Trees": 3,
-    "Trim Trees": 4,
-    "HVAC Forced Air System": 2,
-    "HVAC Furnace": 2,
-    "Bathroom Vanities": 2,
-    "Trim Bushes Yard": 5,
-    "Floor Tile SF" : 1000,
-    "Vinyl SF": 1000
+    "Kitchen Sink": 1,
+    "Circuit Panel": 0,
+    "Removed Trees": 0,
+    "Trim Trees": 0,
+    "HVAC Forced Air System": 0,
+    "HVAC Furnace": 0,
+    "Bathroom Vanities": 5,
+    "Trim Bushes Yard": 0,
+    "Floor Tile SF" : 737,
+    "Vinyl SF": 2000
   },
   "Needed Repairs": {
     "Exterior Painting": {
-      "Paint Exterior Trim": true,
-      "Paint Exterior": true
+      "Paint Exterior Trim": false,
+      "Paint Exterior": false
     },
     "Interior Painting": {
       "Repaint": true
@@ -138,7 +138,7 @@ Give the input as raw json in the body.
       "Interior Door": true
     },
     "Electrical": {
-      "Replace Circuit Panel": true
+      "Replace Circuit Panel": false
     },
     "Cabinet Countertop": {
       "Bathroom Vanities": true,
@@ -146,22 +146,22 @@ Give the input as raw json in the body.
       "Kitchen Cabinet": true
     },
     "Flooring": {
-      "Refinish Hardwood": true,
+      "Refinish Hardwood": false,
       "Tile": true,
       "Vinyl Squares": true
     },
     "HVAC": {
-      "Forced Air System": true,
-      "Furnace": true
+      "Forced Air System": false,
+      "Furnace": false
     },
     "Roof": {
-      "Asphalt Shingles": true,
-      "Wood SHingles": true
+      "Asphalt Shingles": false,
+      "Wood SHingles": false
     },
     "Landscaping": {
-      "Remove Trees": true,
-      "Trim Trees": true,
-      "Trim Bushes": true
+      "Remove Trees": false,
+      "Trim Trees": false,
+      "Trim Bushes": false
     },
     "Plumbing": {
       "Bathroom Sink": true,
@@ -179,43 +179,28 @@ Give the input as raw json in the body.
 ```
 {
   "body": {
-    "Exterior Painting": {
-      "Paint Exterior Trim": {
-        "Job Unit": "Per Floor SF",
-        "Labor": 1,
-        "Material": 0,
-        "Units": 2000,
-        "Cost": 2000
-      },
-      "Paint Exterior": {
-        "Job Unit": "Per Floor SF",
-        "Labor": 3,
-        "Material": 0,
-        "Units": 2000,
-        "Cost": 6000
-      }
-    },
+    "Exterior Painting": {},
     "Cabinet Countertop": {
       "Bathroom Vanities": {
         "Job Unit": "Per Vanity",
         "Labor": 100,
         "Material": 400,
-        "Units": 2,
-        "Cost": 1000
+        "Units": 5,
+        "Cost": 2500
       },
       "Granite Countertops": {
         "Job Unit": "Per SF",
         "Labor": 50,
         "Material": 0,
-        "Units": 10,
-        "Cost": 500
+        "Units": 250,
+        "Cost": 12500
       },
       "Kitchen Cabinet": {
         "Job Unit": "Per LF",
         "Labor": 60,
         "Material": 250,
-        "Units": 0,
-        "Cost": 0
+        "Units": 20,
+        "Cost": 6200
       }
     },
     "Carpentry": {
@@ -227,72 +212,34 @@ Give the input as raw json in the body.
         "Cost": 1400
       }
     },
-    "Electrical": {
-      "Replace Circuit Panel": {
-        "Job Unit": "Per Panel",
-        "Labor": 1500,
-        "Material": 0,
-        "Units": 6,
-        "Cost": 9000
-      }
-    },
+    "Electrical": {},
     "Flooring": {
-      "Refinish Hardwood": {
-        "Job Unit": "Per SF",
-        "Labor": 2,
-        "Material": 0,
-        "Units": 10,
-        "Cost": 20
-      },
       "Tile": {
         "Job Unit": "Per SF",
         "Labor": 6,
         "Material": 10,
-        "Units": 1000,
-        "Cost": 16000
+        "Units": 737,
+        "Cost": 11792
       },
       "Vinyl Squares": {
         "Job Unit": "Per SF",
         "Labor": 1.5,
         "Material": 2,
-        "Units": 1000,
-        "Cost": 3500
+        "Units": 2000,
+        "Cost": 7000
       }
     },
-    "HVAC": {
-      "Forced Air System": {
-        "Job Unit": "Per System",
-        "Labor": 8000,
-        "Material": 0,
-        "Units": 2,
-        "Cost": 16000
-      },
-      "Furnace": {
-        "Job Unit": "Per Unit",
-        "Labor": 2000,
-        "Material": 0,
-        "Units": 2,
-        "Cost": 4000
-      }
-    },
+    "HVAC": {},
     "Interior Painting": {
       "Repaint": {
         "Job Unit": "Per Floor SF",
         "Labor": 2.25,
         "Material": 0,
-        "Units": 2000,
-        "Cost": 4500
+        "Units": 2737,
+        "Cost": 6158.25
       }
     },
-    "Landscaping": {
-      "Trim Bushes": {
-        "Job Unit": "Per Yard",
-        "Labor": 60,
-        "Material": 0,
-        "Units": 5,
-        "Cost": 300
-      }
-    },
+    "Landscaping": {},
     "Plumbing": {
       "Bathroom Sink": {
         "Job Unit": "Per Sink",
@@ -312,8 +259,8 @@ Give the input as raw json in the body.
         "Job Unit": "Per Sink",
         "Labor": 100,
         "Material": 150,
-        "Units": 2,
-        "Cost": 500
+        "Units": 1,
+        "Cost": 250
       },
       "Tub": {
         "Job Unit": "Per Tub",
@@ -330,23 +277,9 @@ Give the input as raw json in the body.
         "Cost": 700
       }
     },
-    "Roof": {
-      "Asphalt Shingles": {
-        "Job Unit": "Per Square",
-        "Labor": 350,
-        "Material": 0,
-        "Units": 27.37,
-        "Cost": 9579.5
-      },
-      "Wood SHingles": {
-        "Job Unit": "Per Square",
-        "Labor": 700,
-        "Material": 0,
-        "Units": 27.37,
-        "Cost": 19159
-      }
-    },
-    "Total Cost": 97038.5
+    "Roof": {},
+    "Total Cost": 51380.25
   }
 }
+
 ```
