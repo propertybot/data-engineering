@@ -17,14 +17,12 @@
 
 **Ingestion of Rapid API Data, Saving of Images, Labeling of Images**
 
-The main data ingestion process is locating [ingest_listings.ipynb](ingest_listings.ipynb). Here is the sequence diagram for the data ingestion process:
+The main data ingestion process is in this Python file: [ingest_listings.py](ingest_listings.py). The code is a simple data pipeline that leverages listing apis, rental estimate apis, our custom computer vision model, and some text parsing in a data processing step. Once the data are processed they are loaded into DynamoDB for further processing. 
 
-![alt text](read_me_references/sequence.png)
 
 
 ### TODO: CURRENT State Architecture
 
 
 ### FUTURE State Architecture 
-![alt text](read_me_references/pipeline_rapidapi.png)
 
