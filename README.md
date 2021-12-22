@@ -565,10 +565,10 @@ print(response.text)
 
 ## Future State
 
-### Data Ingestion
+### Data Collection
 
 
-![image info](images/pb-data-processing-future.png)
+![image info](images/pb-data-collection.png)
 
 
 ### Location of compute resources and data that is processed in diagram above
@@ -580,6 +580,11 @@ print(response.text)
 * [3.0 Lambda: get_details](https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/get_details?tab=configure)
     * 3.0 Trigger Event: when a document is created in pb-get-listings bucket the get_details lambda is triggered
     * [3.4 S3: location of the get_details output JSON](https://s3.console.aws.amazon.com/s3/buckets/pb-get-details?region=us-east-1&tab=objects)
+* [4.0 Lambda: get images](https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/get_listings?tab=code)
+    * Trigger event: triggered when a new document is created in pb-details bucket from the above process. 
+    * S3 Bucket Output: two sets of data are saved: 
+        * [raw image](https://s3.console.aws.amazon.com/s3/buckets/pb-images-raw?region=us-east-1&tab=objects)
+        * Get Details are updated....from step 3.0 with location of s3 urls
 
 
 ### Processing Sold Listings
