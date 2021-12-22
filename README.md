@@ -587,3 +587,5 @@ print(response.text)
         * [S3: of updated details out out in JSON = pb-details-enriched](https://s3.console.aws.amazon.com/s3/buckets/pb-details-enriched?region=us-east-1&tab=objects)
 
 ### Data Processing
+
+![image info](images/pb-data-processing.png)
