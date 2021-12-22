@@ -571,4 +571,15 @@ print(response.text)
 ![image info](images/pb-data-processing-future.png)
 
 
+### Location of compute resources and data that is processed in diagram above
+* [1.0 EventBridge: Rule](https://us-east-1.console.aws.amazon.com/events/home?region=us-east-1#/eventbus/default/rules/run-get-listings-daily) 
+* [2.0 Lambda: get_listing](https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/get_listings?tab=code)
+    * [2.2 S3: location of get_listings output JSON](https://s3.console.aws.amazon.com/s3/buckets/pb-get-listing?region=us-east-1&tab=objects)
+        * [Intelligent tiering has been set up to put items into storage when not accessed frequently](https://s3.console.aws.amazon.com/s3/buckets/pb-get-listing?region=us-east-1&tab=properties)
+        * [Version control has turned on in the bucket](https://s3.console.aws.amazon.com/s3/buckets/pb-get-listing?region=us-east-1&tab=properties)
+* [3.0 Lambda: get_details](https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/get_details?tab=configure)
+    * 3.0 Trigger Event: when a document is created in pb-get-listings bucket the get_details lambda is triggered
+    * [3.4 S3: location of the get_details output JSON](https://s3.console.aws.amazon.com/s3/buckets/pb-get-details?region=us-east-1&tab=objects)
+
+
 ### Processing Sold Listings
