@@ -589,3 +589,31 @@ print(response.text)
 ### Data Processing
 
 ![image info](images/pb-data-processing.png)
+
+* 1.0 - EventBridge to start models
+* 2.0 - Run room classification model on bucket of raw images
+    * 2.1 List of buckets names based on rooms in house that store those room's images
+        * pb-images-attict
+        * pb-images-back-yard
+        * pb-images-basement
+        * pb-images-bathroom
+        * pb-images-bedroom
+        * pb-images-dining-room
+        * pb-images-front-yard
+        * pb-images-garage
+        * pb-images-kitchen
+        * pb-images-living-room
+        * pb-images-closet-storage
+* 3.0 - Run room models, which indentify level of disrepair on a room level in each of the buckets above
+    * Kitchen model
+    * Bathroom model
+    
+    
+* 4.0 - Glue job that process the new data coming into the RDS
+
+
+
+* 5.0 RDS instance that stores dato for display on website 
+
+
+
