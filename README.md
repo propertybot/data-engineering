@@ -7,9 +7,9 @@
 * [Data Sources](#Data-Sources)
     * [Properties for Sale](#Properties-for-Sale)
     * [Property Details](#Property-Details)
-* [Data Processing](#Data-Processing)
-    * [Current State](#Current-State)
-    * [Future State](#Future-State)
+* [Data Pipeline](#Data-Pipeline)
+    * [Data Collection & Enrichment](#Data-Collection-&-Enrichment)
+    * [Data Processing & Updating](#Data-Processing-&-Updating)
    
 
 
@@ -551,69 +551,56 @@ print(response.text)
 
 
 
-## Data Processing 
+## Data Pipeline
 ---
 
-## Current State
-
-
-![image info](images/pb-data-processing-current.png)
-
-
-
-
-
-## Future State
-
-### Data Collection
+### Data Collection & Enrichment
 
 
 ![image info](images/pb-data-collection.png)
 
+This process is triggered daily at 1130am PST.
 
-### Location of compute resources and data that is processed in diagram above
-* [1.0 EventBridge: Rule](https://us-east-1.console.aws.amazon.com/events/home?region=us-east-1#/eventbus/default/rules/run-get-listings-daily) 
-* [2.0 Lambda: get_listing](https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/get_listings?tab=code)
-    * [2.2 S3: location of get_listings output JSON = pb-get-listing](https://s3.console.aws.amazon.com/s3/buckets/pb-get-listing?region=us-east-1&tab=objects)
-        * [Intelligent tiering has been set up to put items into storage when not accessed frequently](https://s3.console.aws.amazon.com/s3/buckets/pb-get-listing?region=us-east-1&tab=properties)
-        * [Version control has turned on in the bucket](https://s3.console.aws.amazon.com/s3/buckets/pb-get-listing?region=us-east-1&tab=properties)
-* [3.0 Lambda: get_details](https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/get_details?tab=configure)
-    * 3.0 Trigger Event: when a document is created in pb-get-listings bucket the get_details lambda is triggered
-    * [3.4 S3: location of the get_details output JSON = pb-get-details](https://s3.console.aws.amazon.com/s3/buckets/pb-get-details?region=us-east-1&tab=objects)
-* [4.0 Lambda: get images](https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/get_listings?tab=code)
-    * Trigger event: triggered when a new document is created in pb-details bucket from the above process. 
-    * S3 Bucket Output: two sets of data are saved: 
-        * [S3: location of raw images extracted = pb-raw-images](https://s3.console.aws.amazon.com/s3/buckets/pb-images-raw?region=us-east-1&tab=objects)
-        * [S3: of updated details out out in JSON = pb-details-enriched](https://s3.console.aws.amazon.com/s3/buckets/pb-details-enriched?region=us-east-1&tab=objects)
+* 1.0 - Eventbridge starts model Lambdas: 
+    * start-model-room-classifier
+    * start-kitchen-classifier
+    * start-bathroom-classifier
+* 2.0 - 30 minutes later Eventbridge starts data collection by triggering - Lambda: get-listings
+    * 2.1 Data saved to S3: pb-get-listings
+* 3.0 - S3 triggers the rest of the lambdas to collect and enrich the data in sequence & record by record: 
+    * 3.1 Lambda - get-details
+        * 3.11 - Data saved to s3: pb-get-details
+    * 3.2 Lambda - get-images
+        * 3.21 Data saved to s3: pb-images-raw
+        * 3.22 Data saved to s3: pb-details-enriched
+    * 3.3 Lambda - run-model-room-classifier
+        * 3.31 Data saved to s3: 
+            * pb-images-attict
+            * pb-images-back-yard
+            * pb-images-basement
+            * pb-images-bathroom
+            * pb-images-bedroom
+            * pb-images-dining-room
+            * pb-images-front-yard
+            * pb-images-garage
+            * pb-images-kitchen
+            * pb-images-living-room
+            * pb-images-closet-storage
+            
+     * 3.4 Run room-level classifiers
+         * run-model-kitchen
+         * run-model-bathroom
+         
+* 4.0 - 1 hour after pipeline, EventBridge stops all model Lambdas
+    * stop-model-room-classifier
+    * stop-kitchen-classifier
+    * stop-bathroom-classifier
 
-### Data Processing
-
-![image info](images/pb-data-processing.png)
-
-* 1.0 - EventBridge to start models
-* 2.0 - Run room classification model on bucket of raw images
-    * 2.1 List of buckets names based on rooms in house that store those room's images
-        * pb-images-attict
-        * pb-images-back-yard
-        * pb-images-basement
-        * pb-images-bathroom
-        * pb-images-bedroom
-        * pb-images-dining-room
-        * pb-images-front-yard
-        * pb-images-garage
-        * pb-images-kitchen
-        * pb-images-living-room
-        * pb-images-closet-storage
-* 3.0 - Run room models, which indentify level of disrepair on a room level in each of the buckets above
-    * Kitchen model
-    * Bathroom model
+### Data Processing & Updating
     
-    
-* 4.0 - Glue job that process the new data coming into the RDS
+* 5.0 EventBridge starts Glue job that process the new data and loads it into RDS
 
-
-
-* 5.0 RDS instance that stores dato for display on website 
+* 6.0 EventBridge starts Lambda that updates listing status (sold, pending, etc.) of all data everywhere.
 
 
 
