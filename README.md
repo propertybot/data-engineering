@@ -181,7 +181,7 @@ NOTE: the image above is the sequence diagram for processing listings, but the s
 
 * 5.0 Processing Listings
     * 5.1 AWS Glue DataBrew Job: pb-clean-listings
-        * xxxxx
+        * Processes listing data to make it easy to clean and query in a tabular format
         * Compressed and columnar data are saved in s3: pb-clean-listings
 
     * 5.2 Glue Crawler runs and creates table in Athena for analyzing pb-clean-listings: 
@@ -190,7 +190,7 @@ NOTE: the image above is the sequence diagram for processing listings, but the s
 
 * 6.0 Processing Details
     * 5.1 AWS Glue DataBrew Job: pb-clean-details
-        * xxxxx
+        * Processes listing data to make it easy to clean and query in a tabular format
         * Compressed and columnar data are saved in s3: pb-clean-details
 
     * 5.2 Glue Crawler runs and creates table in Athena for analyzing pb-clean-details: 
