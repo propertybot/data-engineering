@@ -5,8 +5,8 @@
 ---
 
 * [Data Sources](#Data-Sources)
-    * [Properties for Sale](#Properties-for-Sale)
-    * [Property Details](#Property-Details)
+    * [Listings](#Properties-for-Sale)
+    * [Details](#Property-Details)
 * [Data Pipeline](#Data-Pipeline)
     * [Data Collection & Enrichment](#Data-Collection-&-Enrichment)
     * [Data Processing with Glue & Querying with Athena](#Data-Processing-with-Glue-&-Querying-with-Athena)
@@ -17,7 +17,7 @@
 ## Data Sources
 ---
 
-## Properties for Sale
+## Listings
 
 **Source: [Realty in US through RapidAPI.com](https://rapidapi.com/apidojo/api/realty-in-us/)**
 
@@ -89,7 +89,7 @@ print(response.text)
 
 
 
-## Property Details
+## Details
 
 **Source: [Realty in US through RapidAPI.com](https://rapidapi.com/apidojo/api/realty-in-us/)**
 
