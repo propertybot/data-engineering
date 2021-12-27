@@ -9,7 +9,8 @@
     * [Property Details](#Property-Details)
 * [Data Pipeline](#Data-Pipeline)
     * [Data Collection & Enrichment](#Data-Collection-&-Enrichment)
-    * [Data Processing & Updating](#Data-Processing-&-Updating)
+    * [Data Processing with Glue & Querying with Athena](#Data-Processing-with-Glue-&-Querying-with-Athena)
+
    
 
 
@@ -85,145 +86,6 @@ print(response.text)
 | `lng_min` | NUMBER | 36.778259| Look for properties in bounding box, this is the min longitude of the coordinate. Has no affect if postal_code, or city or state_code parameter has value.|
 
 
-### Example Record
-```JSON
-{
-    "property_id":"M4686649930",
-    "listing_id":"2938275841",
-    "products":[
-        "0":"core.agent",
-        "1":"core.broker",
-        "2":"co_broke"
-    ],
-    "rdc_web_url":"https://www.realtor.com/realestateandhomes-detail/4010-Sea-Gate-Ave_Brooklyn_NY_11224_M46866-49930",
-    "prop_type":"multi_family",
-        "address":{
-            "city":"Brooklyn",
-            "line":"4010 Sea Gate Ave",
-            "postal_code":"11224",
-            "state_code":"NY",
-            "state":"New York",
-            "county":"Kings",
-            "fips_code":"36047",
-            "county_needed_for_uniq":false,
-            "lat":40.576996,
-            "lon":-74.005901,
-            "neighborhood_name":"Sea Gate",
-        },
-        "branding":{
-            "listing_office":{
-                "list_item":{
-                    "name":"TALK OF THE TOWN REALTY C",
-                    "photo":null,
-                    "phone":null,
-                    "slogan":null,
-                    "show_realtor_logo":false,
-                    "link":null,
-                    "accent_color":null
-                    }
-                }
-            },
-        "prop_status":"for_sale"
-        "price":699000,
-        "baths_full":3,
-        "baths":3,
-        "beds":4,
-        "building_size":{
-            "size":2100,
-            "units":"sqft"
-        }
-        "agents":[
-            "0":{
-                "primary":true,
-                "advertiser_id":"3127779",
-                "id":"3127779",
-                "photo":{
-                    "href":"https://ap.rdcpix.com/218039382/c51349092b07f1144c8eaeb557d2aae0a-c0od-r7_w110.jpg"
-                },
-                "name":"Keren Shalmoni"
-            }
-        "office":{
-            "id":"5095270e4ad1e96f1bf5bc2f2cf61615",
-            "name":"TALK OF THE TOWN REALTY C",
-        },
-        "last_update":"2021-12-20T13:07:14Z",
-        "client_display_flags":{
-            "presentation_status":"for_sale,
-            "is_showcase":false,
-            "lead_form_phone_required":true,
-            "price_change":0,
-            "is_co_broke_email":true,
-            "has_open_house":false,
-            "is_co_broke_phone":false,
-            "is_new_listing":true,
-            "is_new_plan":false,
-            "is_turbo":false,
-            "is_office_standard_listing":false,
-            "suppress_map_pin":false,
-            "show_contact_a_lender_in_lead_form":false,
-            "show_veterans_united_in_lead_form":false,
-            "flip_the_market_enabled":true,
-            "is_showcase_choice_enabled":false,
-            }
-        "lead_forms":{
-            "form":{
-                "name":{
-                    "required":true,
-                    "minimum_character_count":1
-                },
-                "email":{
-                    "required":true,
-                    "minimum_character_count":5
-                },
-                "phone":{
-                    "required":true,
-                    "minimum_character_count":10,
-                    "maximum_character_count":11
-                },
-                "message":{
-                    "required":false,
-                    "minimum_character_count":0
-                },
-                "show":true
-                }
-            "show_agent":false,
-            "show_broker":false,
-            "show_builder":false,
-            "show_contact_a_lender":false,
-            "show_veterans_united":false,
-            "form_type":"classic",
-            "lead_type":"co_broke",
-            "is_lcm_enabled":false,
-            "flip_the_market_enabled":true,
-            "local_phone":"(888)860-0947",
-            "local_phones":{
-            "comm_console_mweb":"(888)860-0947",
-            }
-            "show_text_leads":true,
-            "cashback_enabled":true,
-            "smarthome_enabled":false,
-            }
-            "photo_count":2,
-            "thumbnail":"https://ap.rdcpix.com/203596091bc86c4dcbd807d80f800b65l-m4265838673x.jpg",
-            "page_no":1,
-            "rank":1,
-            "list_tracking":"BUNCH OF STUFF"
-                    "lot_size":{
-                        "size":3000,
-                        "units":"sqft",
-                    },
-                    "mls":{
-                        "name":"Brooklyn",
-                        "id":"457881",
-                        "plan_id":NULL,
-                        "abbreviation":"BONY",
-                        "type":"mls",
-                    },
-                    "data_source_name":"mls",
-                    }
-
-
-```
 
 
 
@@ -261,292 +123,6 @@ print(response.text)
 
 ### Parameters - Optional
 **None**
-
-### Example Record
-```JSON
-{
-    "property_id":"O3599084026",
-    "prop_status":"not_for_sale",
-    "prop_type":"single_family",
-    "suppression_flags":[
-        0:"suppress_foreclosure",
-        ],
-    "buyer_agent_for_far":{
-    "advertiser_id":2821876,
-        "name":"Non Member",
-        "nrds_verified_id":NULL,
-        "state_license":NULL,
-        "mls_membership":{
-            "member":{
-                "id":"NM0000",
-                "agent_system_id":"NM0000",
-                "name":NULL,
-                "abbreviation":"BONY",
-            }
-        }
-    },
-    
-    "broker":{
-        "name":"Weichert Realtors The Franzese Group",
-            "phone1":{
-            "number":"7182321004",
-            "type":"broker",
-            }
-        }
-    "year_built":1930,
-    "beds":2,
-    "description":"429 Beach 145th St, Rockaway Park, NY 11694 is a single family home built in 1930. This property was last sold for 705,000 in 2019 and currently has an estimated value of 819,900. According to the Rockaway Park public records, the property at 429 Beach 145th St, Rockaway Park, NY 11694 has approximately 1200 square feet, 2 beds and 1 baths with a lot size of 4,000 square feet. Nearby schools include Ps Ms 114 Belle Harbor. "
-    "baths_full":1,
-    "stories":1,
-    "schools":[
-        "0":{
-            "nces_id":"360012302426",
-            "id":"0751462661",
-            "greatschools_id":"3602388",
-            "name":"Ps Ms 114 Belle Harbor",
-            "education_levels":[
-                "0":"elementary",
-                "1":"middle"
-            ],
-            "funding_type":"public",
-            "lat":40.577746,
-            "lon":-73.854382,
-            "student_count":669,
-            "student_teacher_ratio":13.2,
-            "location":{
-                "city_slug_id":"Queens_NY",
-                "postal_code":"11694",
-                "state":"NY",
-                "county":"Queens",
-                "city":"Queens",
-                "street":"134-1 Cronston Avenue"
-            },
-            "phone":"(718) 634-3382",
-            "distance_in_miles":0.5,
-            "grades":{
-                "range":{
-                    "low":"PK",
-                    "high":"8"
-                }
-            },
-            "relevance":"assigned",
-            "ratings":{
-                "great_schools_rating":8,
-                "parent_rating":3
-            }
-        }],
-    "heating":NULL,
-    "cooling":NULL,
-    "address":{
-        "city":"Rockaway Park",
-        "line":"429 Beach 145th St",
-        "unit_value":NULL,
-        "street_direction":NULL,
-        "street_post_direction":NULL,
-        "postal_code":"11694",
-        "address_validation_code":"121",
-        "state_code":"NY",
-        "state":"New York",
-        "county":"Queens",
-        "county_needed_for_uniq":false,
-        "time_zone":"America/New_York",
-        "lat":40.574091,
-        "lon":-73.862966,
-        "neighborhood_name":"Neponsit",
-            "neighborhoods":[
-                0:{
-                "name":"Neponsit",
-                "city":"Queens",
-                "state_code":"NY",
-                "level":"sub_neighborhood",
-                "id":"885",
-                },]
-        },
-    "client_display_flags":{
-        "presentation_status":"not_for_sale"
-        },
-    "tax_history":[
-        0:{
-            "assessment":{
-            "building":34440,
-            "land":12780,
-            "total":47220,
-            }
-            ,
-            "market":{
-            "building":574000,
-            "land":213000,
-            "total":787000,
-            },
-            "tax":6894,
-            "year":2021,
-        }],
-    "sold_history":[
-        0:{
-        "date":"2019-12-13T17:00:00Z",
-        "source":"MLS #427356",
-        "listing":{
-        "price":705000,
-        },
-
-        },
-        "property_history":[
-            0:{
-            "event_name":"Sold",
-            "date":"2019-12-13T17:00:00Z",
-            "price":705000,
-            "price_range_min":NULL,
-            "price_range_max":NULL,
-            "price_changed":-34000,
-            "sqft":1200,
-            "datasource_name":"Brooklyn",
-            "source":"MLS #427356",
-            "listing":{...}12 items,
-            "iso_date":"2019-12-13",
-            "previous_event_price":739000,
-            },],
-        "public_records":[
-            0:{
-            "prop_type":"single_family",
-            "baths":NULL,
-            "baths_half":NULL,
-            "baths_full":NULL,
-            "baths_3qtr":NULL,
-            "baths_1qtr":NULL,
-            "beds":NULL,
-            "distinct_baths":NULL,
-            "sqft":0,
-            "building_sqft":NULL,
-            "floor_1_sqft":NULL,
-            "fireplace":NULL,
-            "exterior1":NULL,
-            "garage_sqft":NULL,
-            "garage_spaces":NULL,
-            "lot_size":4000,
-            "lot_width":40,
-            "lot_depth":100,
-            "stories":1,
-            "year_built":1930,
-            "year_renovated":1930,
-            "garage":NULL,
-            "construction_quality":NULL,
-            "rooms":NULL,
-            "units":NULL,
-            "heating":NULL,
-            "cooling":NULL,
-            "construction":NULL,
-            "roofing":NULL,
-            "pool":NULL,
-            "style":NULL,
-            "view":NULL,
-            "cl_id":"7662B463544646B658C2BE4A7215327F",
-            "date_updated":"10/31/2021",
-            },
-            ],
-        "products":[
-            0:"suppress_foreclosure",
-            ],
-        "office":{,
-            "name":"Weichert Realtors The Franzese Group",
-            "advertiser_id":1513383,
-            "href":"WWW.WEICHERTFRANZESE.COM",
-            "photo":{
-                "href":"",
-                },
-        "email":"afranzese@weichert.com",
-        "slogan":"",
-        "phones":[
-            0:{
-                "number":"718-232-1004",
-                "type":"office",
-                "primary":true,
-            }
-        ],
-        "address":{
-            "city":"Brooklyn",
-            "state_code":"NY",
-        },
-        "mls_membership":{
-        "member":{
-            "office_system_id":"115000",
-            },
-        }
-        "id":"33fb537ee27bfbf0303f8cfd324d03e0",
-        },
-        "agents":[,
-            0:{
-            "profile_name":"Thomas Losquadro",
-            "name":"Thomas Losquadro",
-            "advertiser_id":"2821356",
-            "href":"",
-            "photo":{,
-                "href":""
-            }
-            "nrds_id":NULL,
-            "nrds_verified_id":NULL,
-            "office_name":"Weichert Realtors The Franzese Group",
-            "phones":[
-            0:{
-                "number":"917-560-6329",
-                "type":"office",
-                "primary":true,
-            },
-        ],
-        "email":"tlosquadro@weichert.co",
-        "slogan":"",
-        "state_license":NULL,
-        "mls_memberships":{...},
-        "id":"2821356",
-        "primary":true,
-        },
-        ],
-        "lot_size":{
-            "size":4000,
-            "units":"sqft",
-        },
-        "building_size":{
-            "size":1200,
-            "units":"sqft",
-        },
-        "price":819900,
-        "rdc_web_url":"https://www.realtor.com/realestateandhomes-detail/429-Beach-145th-St_Far-Rockaway_NY_11694_M35990-84026",
-        "rdc_app_url":"move-rdc://www.realtor.com/realestateandhomes-detail/429-Beach-145th-St_Far-Rockaway_NY_11694_M35990-84026",
-        "homevalue_web_url":"https://www.realtor.com/myhome/429-Beach-145th-St_Far-Rockaway_NY_11694_M35990-84026/homevalue",
-        "baths":1,
-        "photo_count":44,
-        "buyer_office":{
-            "name":"MCMLS",
-            "advertiser_id":1513899,
-            "href":NULL,
-            "photo":{
-                "href":"",
-        },
-        "address":{
-            "city":"BROOKLYN",
-            "state_code":"NY",
-        }
-        "slogan":"",
-        "email":"",
-        "mls_memberships":{...},
-        "id":"040f7addbfff926898b7575429836586",
-        "phones":[
-        ]
-        }
-        "data_source_name":"public_records",
-        "detail_tracking":"type|property|data|prop_id|3599084026|address|city|Rockaway+Par",
-        "photos":[
-            0:{
-            "href":"https://ap.rdcpix.com/7f3ebec74861b3523b7211ae2e513c6dl-m3602131459x.jpg",
-        }]
-
-
-}
-
-
-
-
-
-```
 
 
 
@@ -590,17 +166,48 @@ This process is triggered daily at 1130am PST.
      * 3.4 Run room-level classifiers
          * run-model-kitchen
          * run-model-bathroom
+         * JSON labelels saved in s3: pb-images-labeled
          
 * 4.0 - 1 hour after pipeline, EventBridge stops all model Lambdas
     * stop-model-room-classifier
     * stop-kitchen-classifier
     * stop-bathroom-classifier
 
-### Data Processing & Updating
-    
-* 5.0 EventBridge starts Glue job that process the new data and loads it into RDS
+### Data Processing with Glue & Querying with Athena
+![image info](images/pb-data-glue-and-athena.png)
+NOTE: the image above is the sequence diagram for processing listings, but the same process applies to processing the Details and the Image data as described below.
 
-* 6.0 EventBridge starts Lambda that updates listing status (sold, pending, etc.) of all data everywhere.
+
+
+* 5.0 Processing Listings
+    * 5.1 AWS Glue DataBrew Job: pb-clean-listings
+        * xxxxx
+        * Compressed and columnar data are saved in s3: pb-clean-listings
+
+    * 5.2 Glue Crawler runs and creates table in Athena for analyzing pb-clean-listings: 
+        * Glue Crawler:pb-clean-listings
+        * Athena Table: pb-clean-listings
+
+* 6.0 Processing Details
+    * 5.1 AWS Glue DataBrew Job: pb-clean-details
+        * xxxxx
+        * Compressed and columnar data are saved in s3: pb-clean-details
+
+    * 5.2 Glue Crawler runs and creates table in Athena for analyzing pb-clean-details: 
+        * Glue Crawler: pb-clean-details
+        * Athena Table: pb-clean-details
+
+
+* 7.0.0 Processing Image Labels
+    * 7.1 AWS Glue DataBrew Job: pb-clean-image-labels
+        * Takes json files for image data and runs recipe to flatten the structs/arrays into columnar data
+        * Compressed and columnar data are saved in s3: pb-clean-image-labels
+
+    * 7.2 Glue Crawler runs and creates table in Athena for analyzing image labels: 
+        * Glue Crawler: pb-clean-image-labels
+        * Athena Table: pb-clean-image-labels
+
+
 
 
 
