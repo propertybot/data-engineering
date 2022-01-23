@@ -8,8 +8,9 @@
     * [Listings](#Properties-for-Sale)
     * [Details](#Property-Details)
 * [Data Pipeline](#Data-Pipeline)
-    * [Data Collection & Enrichment](#Data-Collection-&-Enrichment)
-    * [Data Processing with Glue & Querying with Athena](#Data-Processing-with-Glue-&-Querying-with-Athena)
+    * [Data Collection & Enrichment](#Data-Collection-&-Enrichment---Starts-at-1130am-PST)
+    * [Data Processing with Glue & Querying with Athena](#Data-Processing-with-Glue-&-Querying-with-Athena---starts-at-3pm-PST)
+    * [Run Final Calculations - starts at 6pm PST](#Run-Final-Calculations---starts-at-6pm-PST)
 
    
 
@@ -130,7 +131,7 @@ print(response.text)
 ## Data Pipeline
 ---
 
-### Data Collection & Enrichment
+### Data Collection & Enrichment - Starts at 1130am PST
 
 
 ![image info](images/pb-data-collection.png)
@@ -173,7 +174,15 @@ This process is triggered daily at 1130am PST.
     * stop-kitchen-classifier
     * stop-bathroom-classifier
 
-### Data Processing with Glue & Querying with Athena
+
+### Remove Sold Listings - Lambda: archive-sold
+
+* At the same time that the models are turned off, a lambda function runs that checks the status of each listing.
+* If the status of the listing is not "for_sale", then the data are moved to an S3 bucket: pb-sold
+
+
+
+### Data Processing with Glue & Querying with Athena - starts at 3pm PST
 ![image info](images/pb-data-glue-and-athena.png)
 NOTE: the image above is the sequence diagram for processing listings, but the same process applies to processing the Details and the Image data as described below.
 
@@ -198,7 +207,7 @@ NOTE: the image above is the sequence diagram for processing listings, but the s
         * Athena Table: pb-clean-details
 
 
-* 7.0.0 Processing Image Labels
+* 7.0 Processing Image Labels
     * 7.1 AWS Glue DataBrew Job: pb-clean-image-labels
         * Takes json files for image data and runs recipe to flatten the structs/arrays into columnar data
         * Compressed and columnar data are saved in s3: pb-clean-image-labels
@@ -209,5 +218,17 @@ NOTE: the image above is the sequence diagram for processing listings, but the s
 
 
 
+### Run Final Calculations - starts at 6pm PST
 
+* 8.0 Join all processed tables
+
+
+* 9.0 Estimate ROI WITHOUT Rehab Estimates
+
+
+
+* 10.0 Calculate ROI WITH Rehab Estimates
+
+
+### Load Final Table into RDS - starts at 7pm PST
 
