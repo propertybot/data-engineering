@@ -262,6 +262,11 @@ def main_start_model():
     version_name = 'kitchen-labeling.2022-01-03T10.07.41'
     start_model(project_arn, model_arn, version_name, min_inference_units)
 
+    project_arn = 'arn:aws:rekognition:us-east-1:735074111034:project/general-room-labeling/1640063576315'
+    model_arn = 'arn:aws:rekognition:us-east-1:735074111034:project/general-room-labeling/version/general-room-labeling.2022-01-07T17.10.57/1641604257980'
+    version_name = 'general-room-labeling.2022-01-07T17.10.57'
+    start_model(project_arn, model_arn, version_name, min_inference_units)
+
 # ### User Computer Vision Model To Label Images
 
 # In[11]:
@@ -296,23 +301,22 @@ def determine_room(bucket, photo):
 
 def analyze_image(bucket, photo):
     room = determine_room(bucket, photo)
+    GENERAL_ROOMS = ['Bedroom', 'Living Room']
     if room == 'Kitchen':
         model = 'arn:aws:rekognition:us-east-1:735074111034:project/kitchen-labeling/version/kitchen-labeling.2022-01-03T10.07.41/1641233261997'
-    elif room == 'Bedroom':
-        return {}
+    elif room in GENERAL_ROOMS:
+        model = 'arn:aws:rekognition:us-east-1:735074111034:project/general-room-labeling/version/general-room-labeling.2022-01-07T17.10.57/1641604257980'
     elif room == 'Bathroom':
         model = 'arn:aws:rekognition:us-east-1:735074111034:project/bathroom-labeling/version/bathroom-labeling.2021-12-22T10.29.21/1640197758406'
     elif room == 'Front Yard':
         return {}
     elif room == 'Back yard':
         return {}
-    elif room == None:
-        return {}
     else:
         return {}
     bucket = bucket
     photo = photo
-    min_confidence = 5
+    min_confidence = 20
     labels = show_custom_labels(model, bucket, photo, min_confidence)
     aggregation = {}
 
@@ -425,6 +429,8 @@ def main_stop_model():
 
     model_arn = 'arn:aws:rekognition:us-east-1:735074111034:project/PropertyBot-v3-room-rekognition/version/PropertyBot-v3-room-rekognition.2021-09-04T22.57.53/1630821474130'
     stop_model(model_arn)
+    model_arn = 'arn:aws:rekognition:us-east-1:735074111034:project/PropertyBot-v3-room-rekognition/version/PropertyBot-v3-room-rekognition.2021-09-04T22.57.53/1630821474130'
+    stop_model(model_arn)
     model_arn = 'arn:aws:rekognition:us-east-1:735074111034:project/bathroom-labeling/version/bathroom-labeling.2021-12-22T10.29.21/1640197758406'
     stop_model(model_arn)
 
@@ -486,6 +492,7 @@ def main(city, state_code, rent_or_sale, how_many_at_a_time, how_many_total):
                                rent_or_sale=rent_or_sale, offset=offset, limit=limit)
         properties = response['properties']
         for property in properties:
+            # SEND SQS MESSAGE TO TRIGGER SEPERATE LAMBDA PER PROPERTY
             listings_dict = create_listing_dict(properties=[property])
             total = limit + offset
             offset = offset + limit
@@ -520,8 +527,6 @@ def main(city, state_code, rent_or_sale, how_many_at_a_time, how_many_total):
 
 
 # In[ ]:
-
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description="Pulls listing data, runs computer vision, and nlp")
