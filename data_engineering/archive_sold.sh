@@ -1,0 +1,5 @@
+python archive_sold.py "Cleveland" "OH" 
+python archive_sold.py "Charlotte" "NC" 
+python archive_sold.py "Los Angeles" "CA" 
+python archive_sold.py "Tampa" "FL" 
+python archive_sold.py "Phoenix" "AZ" 
