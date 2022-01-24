@@ -37,43 +37,6 @@ def get_sold(city, state, offset="0"):
 
 
 
-# ## Get Item from Table & Save to S3
-
-# In[62]:
-
-
-def save_from_dynamo_to_s3(property_id):
-    #TODO: not actually saving object, only was saving the resonse, need to get the actual item returned
-
-    print(f"INFO: getting from dynamoDB and saving to s3 for property_id: {property_id}")
-    
-    
-  
-    response = table.get_item(Key={'property_id': property_id})
-    def default(obj):
-        if isinstance(obj, Decimal):
-            return str(obj)
-        raise TypeError("Object of type '%s' is not JSON serializable" % type(obj).__name__)
-
-
-
-    json_object = json.dumps(response,default=default) 
-
-    s3object = s3.Object('pb-sold', f'{property_id}.json')
-
-    s3object.put(
-        Body=(bytes(json_object.encode('UTF-8')))
-    )
-    print(f"Done...")
-   
-        
-    
-    
-
-# # Delete an item from DynamoDB
-
-# In[56]:
-
 
 def dynamo_delete_property(property_id):
     print(f"INFO: trying to remove property_id {property_id} from dynamodb table")
@@ -85,7 +48,7 @@ def dynamo_delete_property(property_id):
     return None
 
 
-# In[66]:
+
 
 
 def main(city, state):
@@ -100,7 +63,6 @@ def main(city, state):
 
         for prop in sold['properties']:
             property_id = prop['property_id']
-            save_from_dynamo_to_s3(property_id=property_id)
             dynamo_delete_property(property_id=property_id)
 
     print("Done....")
